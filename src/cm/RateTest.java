@@ -343,4 +343,40 @@ public class RateTest
 		Period chargePeriod = new Period(9, 11);
 		assertEquals(BigDecimal.valueOf(3), theRate.calculate(chargePeriod));
 	}
+	
+	@Test
+	public void testCalculateStudent()
+	{
+		Period[] array = {new Period(1, 6),new Period(9, 13)};
+		ArrayList<Period> theReducedPeriods = new ArrayList<Period>(Arrays.asList(array));
+		Period[] newArray = {new Period(13, 15),new Period(19, 23)};
+		ArrayList<Period> theNormalPeriods = new ArrayList<Period>(Arrays.asList(newArray));
+		Rate theRate = new Rate(CarParkKind.STUDENT, BigDecimal.valueOf(5), BigDecimal.valueOf(2), theReducedPeriods, theNormalPeriods);
+		Period chargePeriod = new Period(9, 11);
+		assertEquals(BigDecimal.valueOf(4), theRate.calculate(chargePeriod));
+	}
+	
+	@Test
+	public void testCalculateStudent2()
+	{
+		Period[] array = {new Period(1, 6),new Period(9, 13)};
+		ArrayList<Period> theReducedPeriods = new ArrayList<Period>(Arrays.asList(array));
+		Period[] newArray = {new Period(13, 15),new Period(19, 23)};
+		ArrayList<Period> theNormalPeriods = new ArrayList<Period>(Arrays.asList(newArray));
+		Rate theRate = new Rate(CarParkKind.STUDENT, BigDecimal.valueOf(5), BigDecimal.valueOf(2), theReducedPeriods, theNormalPeriods);
+		Period chargePeriod = new Period(13, 14);
+		assertEquals(BigDecimal.valueOf(5), theRate.calculate(chargePeriod));
+	}
+	
+	@Test
+	public void testCalculateStudent3()
+	{
+		Period[] array = {new Period(1, 6),new Period(9, 13)};
+		ArrayList<Period> theReducedPeriods = new ArrayList<Period>(Arrays.asList(array));
+		Period[] newArray = {new Period(13, 15),new Period(19, 23)};
+		ArrayList<Period> theNormalPeriods = new ArrayList<Period>(Arrays.asList(newArray));
+		Rate theRate = new Rate(CarParkKind.STUDENT, BigDecimal.valueOf(5), BigDecimal.valueOf(2), theReducedPeriods, theNormalPeriods);
+		Period chargePeriod = new Period(6, 21);
+		assertEquals(BigDecimal.valueOf(7), theRate.calculate(chargePeriod));
+	}
 }

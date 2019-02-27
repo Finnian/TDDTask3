@@ -119,6 +119,13 @@ public class Rate {
         			return BigDecimal.valueOf(3);
         		}
         		
+        		break;
+        		
+        	case STUDENT:
+        		if(charge.compareTo(BigDecimal.valueOf(5.5)) > 0)
+        		{
+        			charge = charge.divide(BigDecimal.valueOf(4));
+        		}	
         }
         return charge;
     }
