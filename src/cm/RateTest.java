@@ -283,4 +283,16 @@ public class RateTest
 		Period chargePeriod = new Period(7, 20);
 		assertEquals(BigDecimal.valueOf(7.5), theRate.calculate(chargePeriod));
 	}
+	
+	@Test
+	public void testCalculateVisitor5()
+	{
+		Period[] array = {new Period(1, 6),new Period(9, 13)};
+		ArrayList<Period> theReducedPeriods = new ArrayList<Period>(Arrays.asList(array));
+		Period[] newArray = {new Period(13, 15),new Period(19, 23)};
+		ArrayList<Period> theNormalPeriods = new ArrayList<Period>(Arrays.asList(newArray));
+		Rate theRate = new Rate(CarParkKind.VISITOR, BigDecimal.valueOf(5), BigDecimal.valueOf(2), theReducedPeriods, theNormalPeriods);
+		Period chargePeriod = new Period(7, 20);
+		assertEquals(BigDecimal.valueOf(7.5), theRate.calculate(chargePeriod));
+	}
 }
