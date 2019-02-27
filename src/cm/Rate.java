@@ -91,11 +91,36 @@ public class Rate {
         }
         return isValid;
     }
-    public BigDecimal calculate(Period periodStay) {
+    public BigDecimal calculate(Period periodStay) 
+    {
         int normalRateHours = periodStay.occurences(normal);
         int reducedRateHours = periodStay.occurences(reduced);
-        return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
-                this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
+        
+        BigDecimal charge = this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours)).add( this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
+        
+        switch(kind)
+        {
+        	case VISITOR:
+        		if(charge.compareTo(BigDecimal.valueOf(8)) <= 0)
+        		{
+        			charge = BigDecimal.valueOf(0);
+        		}
+        		
+        		else
+        		{
+        			charge = charge.subtract(BigDecimal.valueOf(8)).divide(BigDecimal.valueOf(2));
+        		}
+        		
+        		break;
+        	
+        	case MANAGEMENT:
+        		if(charge.compareTo(BigDecimal.valueOf(3)) <= 0)
+        		{
+        			return BigDecimal.valueOf(3);
+        		}
+        		
+        }
+        return charge;
     }
 
 }
