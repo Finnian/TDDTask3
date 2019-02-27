@@ -125,7 +125,17 @@ public class Rate {
         		if(charge.compareTo(BigDecimal.valueOf(5.5)) > 0)
         		{
         			charge = charge.divide(BigDecimal.valueOf(4));
-        		}	
+        		}
+        		
+        		break;
+        		
+        	case STAFF:
+        		if(charge.compareTo(BigDecimal.valueOf(16)) >= 0)
+        		{
+        			return BigDecimal.valueOf(16);
+        		}
+        		
+        		break;
         }
         return charge;
     }
